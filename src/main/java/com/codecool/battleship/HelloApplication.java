@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -15,22 +16,46 @@ import java.io.IOException;
 import com.codecool.battleship.models.Board.Cell;
 
 public class HelloApplication extends Application {
-    private Board playerBoard;
+    private Board player1Board, player2Board;
     private boolean running = false;
+    private boolean turn1 = false;
+    private boolean turn2 = false;
 
     private Parent createContent() {
         BorderPane root = new BorderPane();
         root.setPrefSize(600, 800);
 
-        playerBoard = new Board(false, event -> {
-            if (running)
-                return;
+        player1Board = new Board(false, event -> {
+//            if (!running)
+//                return;
 
             Cell cell = (Cell) event.getSource();
-            running = true;
+
+
+//            if (cell.wasShot)
+//                return;
+
+            if (player1Board.markStuff((event.getButton() == MouseButton.PRIMARY),cell.x, cell.y))
+                System.out.println("Player1 board clicked");
+
+//            running = true;
         });
 
-        VBox vbox = new VBox(50, playerBoard);
+        player2Board = new Board(false, event -> {
+//            if (running)
+//                return;
+
+            Cell cell = (Cell) event.getSource();
+            if (player2Board.markStuff((event.getButton() == MouseButton.PRIMARY),cell.x, cell.y))
+                System.out.println("Player2 board clicked");
+
+//            if(cell.wasShot)
+//                return;
+
+//            running = true;
+        });
+
+        VBox vbox = new VBox(50, player1Board, player2Board);
         vbox.setAlignment(Pos.CENTER);
 
         root.setCenter(vbox);
@@ -49,7 +74,7 @@ public class HelloApplication extends Application {
 
         stage.setTitle("Battleship WIP");
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 

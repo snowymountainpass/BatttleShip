@@ -35,7 +35,7 @@ public class Board extends Parent {
         this.enemy = enemy;
         for (int y = 0; y < 10; y++) {
             HBox row = new HBox();
-            for (int x = 0; x < 10; x++) {
+            for (int x = 0; x < 20; x++) {
                 Cell c = new Cell(x, y, this);
                 c.setOnMouseClicked(handler);
                 row.getChildren().add(c);
@@ -68,7 +68,21 @@ public class Board extends Parent {
             setStroke(Color.BLACK);
         }
 
+        public boolean shoot() {
+            wasShot = true;
+            setFill(Color.RED);
 
+            return true;
+        }
+
+
+    }
+    public boolean markStuff(boolean eventActivated, int x, int y) {
+        Cell cell = getCell(x, y);
+        if (eventActivated)
+            cell.setFill(Color.RED);
+
+        return true;
     }
 
 
