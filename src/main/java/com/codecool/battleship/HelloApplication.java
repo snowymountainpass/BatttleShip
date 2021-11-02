@@ -37,6 +37,9 @@ public class HelloApplication extends Application {
 
             if (player1Board.markStuff((event.getButton() == MouseButton.PRIMARY),cell.x, cell.y))
                 System.out.println("Player1 board clicked");
+                System.out.println("Player1 board x,y" + cell.x +" "+ cell.y);
+
+
 
 //            running = true;
         });
