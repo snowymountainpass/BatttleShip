@@ -1,7 +1,8 @@
 package com.codecool.battleship.controllers;
 
-import com.codecool.view.Display;
-import com.codecool.view.Input;
+import com.codecool.battleship.view.Display;
+import com.codecool.battleship.view.Input;
+
 
 public class Battleship implements GameInterface {
     private final Display display;
