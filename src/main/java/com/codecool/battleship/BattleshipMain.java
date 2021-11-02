@@ -15,7 +15,7 @@ import java.io.IOException;
 
 import com.codecool.battleship.models.Board.Cell;
 
-public class HelloApplication extends Application {
+public class BattleshipMain extends Application {
     private Board player1Board, player2Board;
     private boolean running = false;
     private boolean turn1 = false;
