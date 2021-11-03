@@ -42,7 +42,7 @@ public class Board extends Parent {
                     Square square = getSquare(x, i);
                     square.ship = ship;
                     if (!enemy) {
-                        square.setFill(Color.WHITE);
+                        square.setFill(Color.YELLOWGREEN);
                         square.setStroke(Color.GREEN);
                     }
                 }
@@ -51,7 +51,7 @@ public class Board extends Parent {
                     Square square = getSquare(i, y);
                     square.ship = ship;
                     if (!enemy) {
-                        square.setFill(Color.WHITE);
+                        square.setFill(Color.YELLOWGREEN);
                         square.setStroke(Color.GREEN);
                     }
                 }
