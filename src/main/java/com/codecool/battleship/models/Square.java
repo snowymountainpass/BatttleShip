@@ -1,47 +1,37 @@
 package com.codecool.battleship.models;
-import com.codecool.battleship.utils.SquareStatus;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
-public class Square {
 
-    private int xCoordinate;
-    private int yCoordinate;
-    private SquareStatus squareStatus;
+public class Square extends Rectangle {
+    public int x, y;
+    public Ship ship = null;
+    public boolean wasShot = false;
 
-    public Square (int xCoordinate, int yCoordinate, SquareStatus squareStatus){
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
-        this.squareStatus = squareStatus.EMPTY;
+    private Board board;
+
+    public Square(int x, int y, Board board) {
+        super(30, 30);
+        this.x = x;
+        this.y = y;
+        this.board = board;
+        setFill(Color.LIGHTGRAY);
+        setStroke(Color.BLACK);
     }
 
-    public SquareStatus SquareStatus(){ return this.squareStatus; }
+    public boolean shoot() {
+        wasShot = true;
+        setFill(Color.BLACK);
 
-    public String getCharacter(SquareStatus squareStatus){
-        switch (squareStatus){
-            case EMPTY:
-                System.out.println("Empty");
-                return "Empty";
-            case MISSED:
-                System.out.println("MISSED");
-                return "MISSED";
-            case HIT:
-                System.out.println("HIT");
-                return "HIT";
-            case OCEAN:
-                System.out.println("OCEAN");
-                return "OCEAN";
-            case SHIP:
-                System.out.println("SHIP");
-                return "SHIP";
-
-            default:
-                return "";
+        if (ship != null) {
+            ship.hit();
+            setFill(Color.RED);
+            if (!ship.isAlive()) {
+                board.ships--;
+            }
+            return true;
         }
-    }
 
-    public int getxCoordinate() {
-        return xCoordinate;
-    }
-    public int getyCoordinate(){
-        return yCoordinate;
+        return false;
     }
 }
