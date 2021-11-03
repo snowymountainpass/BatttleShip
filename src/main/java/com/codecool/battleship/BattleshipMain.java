@@ -15,6 +15,7 @@ public class BattleshipMain extends Application {
 
 //    Game game = new Game(); // Game game = new Game (AIEnabled=true);
 
+    public static Stage primaryStage;
 
 
     @Override
@@ -26,6 +27,8 @@ public class BattleshipMain extends Application {
             stage.setScene(scene);
             stage.setTitle("Battleship WIP");
             stage.show();
+
+            primaryStage = stage;
         } catch (Exception e) {
             e.printStackTrace();
         }
