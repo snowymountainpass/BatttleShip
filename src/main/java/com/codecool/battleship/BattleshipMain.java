@@ -10,16 +10,6 @@ import java.util.Random;
 
 
 public class BattleshipMain extends Application {
-    private Board enemyBoard, playerBoard;
-    private boolean running = false;
-    private boolean turn1 = false;
-    private boolean turn2 = false;
-
-    private int shipsToPlace = 5;
-
-    private boolean enemyTurn = false;
-
-    private Random random = new Random();
 
     Game game = new Game();
 
