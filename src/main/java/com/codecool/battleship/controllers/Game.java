@@ -1,17 +1,15 @@
 package com.codecool.battleship.controllers;
 
-import com.codecool.battleship.BattleshipMain;
+
 import com.codecool.battleship.models.Board;
 import com.codecool.battleship.models.Ship;
 import com.codecool.battleship.models.Square;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
@@ -23,10 +21,11 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 
 
-import java.io.File;
+
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.URL;
+
+import java.util.ArrayList;
+
 import java.util.Random;
 
 public class Game {
@@ -150,24 +149,42 @@ public class Game {
 
     private void enemyMove() throws IOException {
 
+        ArrayList<Square> listValidNeighbours = new ArrayList<>();
+
         while (AITurn) {
-            int x = random.nextInt(10);
-            int y = random.nextInt(10);
 
-            Square cell = playerBoard.getSquare(x, y);
+            if (listValidNeighbours.size() == 0) {
+                int x = random.nextInt(10);
+                int y = random.nextInt(10);
 
-            if (cell.wasShot)
-                continue;
+                Square cell = playerBoard.getSquare(x, y);
 
-            AITurn = cell.shoot();
+                if (cell.wasShot)
+                    continue;
 
-            if (playerBoard.ships == 0) {
+                if (cell.ship != null) {
+                    for (Square neighbour : playerBoard.getNeighbors(x, y)) {
+                        if (!neighbour.wasShot) {
+                            listValidNeighbours.add(neighbour);
+                        }
+                    }
+                }
+                    AITurn = cell.shoot();
+            } else {
+                System.out.println("Number of Valid Neighbours: " + listValidNeighbours.size() + "\n");
+                int index = (int) (Math.random() * listValidNeighbours.size());
 
-                System.out.println("YOU LOSE");
+                if(!listValidNeighbours.get(index).wasShot){
+                    if (listValidNeighbours.get(index).ship != null){
+                        listValidNeighbours.get(index).shoot();
+                    }
+                    listValidNeighbours.remove(index);
 
+                }
             }
+
         }
     }
-
-
 }
+
+

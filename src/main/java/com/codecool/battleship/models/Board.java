@@ -1,6 +1,7 @@
 package com.codecool.battleship.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javafx.event.EventHandler;
@@ -67,7 +68,7 @@ public class Board extends Parent {
             return (Square) ((HBox) rows.getChildren().get(y)).getChildren().get(x);
         }
 
-        private Square[] getNeighbors ( int x, int y){
+        public Square[] getNeighbors ( int x, int y){
             Point2D[] points = new Point2D[]{
                     new Point2D(x - 1, y),
                     new Point2D(x + 1, y),
@@ -82,11 +83,10 @@ public class Board extends Parent {
                     neighbors.add(getSquare((int) p.getX(), (int) p.getY()));
                 }
             }
-
             return neighbors.toArray(new Square[0]);
         }
 
-        private boolean canPlaceShip (Ship ship,int x, int y){
+        public boolean canPlaceShip (Ship ship,int x, int y){
             int length = ship.type;
 
             if (ship.vertical) {
@@ -128,11 +128,11 @@ public class Board extends Parent {
             return true;
         }
 
-        private boolean isValidPoint (Point2D point){
+        public boolean isValidPoint (Point2D point){
             return isValidPoint(point.getX(), point.getY());
         }
 
-        private boolean isValidPoint ( double x, double y){
+        public boolean isValidPoint ( double x, double y){
             return x >= 0 && x < 10 && y >= 0 && y < 10;
         }
 
