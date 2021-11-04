@@ -50,7 +50,7 @@ public class Game {
             BorderPane root = new BorderPane();
             root.setPrefSize(600, 800);
 
-            root.setRight(new Text("RIGHT SIDEBAR - CONTROLS"));
+            root.setRight(new Text("Left Click - place ship vertically \n Right click - place ship horizontally \n Ships may not touch"));
 
             HBox buttonBox = new HBox();
 
@@ -170,6 +170,7 @@ public class Game {
                     }
                 }
                     AITurn = cell.shoot();
+
             } else {
                 System.out.println("Number of Valid Neighbours: " + listValidNeighbours.size() + "\n");
                 int index = (int) (Math.random() * listValidNeighbours.size());
