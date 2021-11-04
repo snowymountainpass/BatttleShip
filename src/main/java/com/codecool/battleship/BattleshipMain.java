@@ -23,7 +23,6 @@ public class BattleshipMain extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
             Scene scene = new Scene(root);
-//            Scene scene = new Scene(game.createContent(true));
             stage.setScene(scene);
             stage.setTitle("Battleship WIP");
             stage.show();
@@ -33,11 +32,6 @@ public class BattleshipMain extends Application {
             e.printStackTrace();
         }
 
-//        Scene scene = new Scene(game.createContent(true));
-//        stage.setTitle("Battleship WIP");
-//        stage.setScene(scene);
-//        stage.setResizable(true);
-//        stage.show();
     }
 
     public static void main(String[] args) {

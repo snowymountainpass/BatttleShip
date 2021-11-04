@@ -35,11 +35,6 @@ public class Game {
 
     public Parent createContent(boolean vsAi) throws IOException {
         Parent defaultRoot = new BorderPane();
-//        Parent rootLost = FXMLLoader.load(getClass().getResource("game-lost.fxml"));
-//        Node sceneLost = (Node)(rootLost);
-//        Parent rootWon = FXMLLoader.load(getClass().getResource("/game-won.fxml"));
-//        FXMLLoader rootWon = new FXMLLoader(getClass().getResource("/game-won.fxml"));
-//        Scene sceneWon = new Scene(rootWon);
         if (vsAi) {
             BorderPane root = new BorderPane();
             root.setPrefSize(600, 800);
@@ -57,21 +52,16 @@ public class Game {
 
                 AITurn = !cell.shoot();
 
+                if (playerBoard.ships == 0){
+                    System.out.println("You lost !");
+                    root.setCenter(new Text("You lost ... "));
+                    root.setRight(new Text(""));
+                }
+
                 if (AIBoard.ships == 0) {
                     System.out.println("YOU WIN");
-//                    System.exit(0);
-//                    rows.getChildren().add(sceneWon);
-                    BattleshipMain.primaryStage.setTitle("YOU WON HAHAAHAHAHAAHAHAH !");
-//                    Button winButton = new Button("Go to Main Menu");
-                    BattleshipMain.primaryStage.show();
-//                    try {
-////                        BattleshipMain.primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("/src/main/resources/game-won.fxml"))));
-//
-//
-//                    } catch IOException {
-//                        e.printStackTrace();
-//                    }
-
+                    root.setCenter(new Text("Congratulations, you won !"));
+                    root.setRight(new Text(""));
 
                 }
 
@@ -126,9 +116,6 @@ public class Game {
 
 
     private void enemyMove() throws IOException {
-//        Parent rootLost = FXMLLoader.load(getClass().getResource("game-lost.fxml"));
-//        Node sceneLost = (Node)(rootLost);
-
 
         while (AITurn) {
             int x = random.nextInt(10);
@@ -143,9 +130,6 @@ public class Game {
             if (playerBoard.ships == 0) {
 
                 System.out.println("YOU LOSE");
-//                System.exit(0);
-//                rows.getChildren().add(sceneLost);
-
 
             }
         }
