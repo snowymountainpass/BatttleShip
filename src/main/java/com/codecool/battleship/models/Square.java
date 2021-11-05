@@ -21,7 +21,7 @@ public class Square extends Rectangle {
 
     public boolean shoot() {
         wasShot = true;
-        setFill(Color.BLACK);
+        setFill(Color.BLUE);
 
         if (ship != null) {
             ship.hit();
