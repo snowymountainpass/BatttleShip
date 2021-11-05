@@ -24,7 +24,7 @@ public class BattleshipMain extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Battleship WIP");
+            stage.setTitle("Battleship");
             stage.show();
 
             primaryStage = stage;
